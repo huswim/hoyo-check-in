@@ -6,10 +6,8 @@
 
 ### 주기적 실행
 
-[install.sh 다운로드](/install.sh)
-
 ```bash
-sudo ./install.sh
+sudo bash -c "$(curl -fsSL https://raw.githubusercontent.com/huswim/hoyo-check-in/main/install.sh)"
 ```
 
 ### 일회성 실행
