@@ -1,8 +1,10 @@
 #!/bin/bash
 
 # 0.  LTOKEN_V2, LTUID_V2 입력
-read -p "LTOKEN_V2=" ${LTOKEN_V2}
-read -p "LTUID_V2=" ${LTUID_V2}
+read -p "LTOKEN_V2=" LTOKEN_V2
+read -p "LTUID_V2=" LTUID_V2
+
+docker run --rm --name "hoyo-check-in" -e LTOKEN_V2=$LTOKEN_V2 -e LTUID_V2=$LTUID_V2 ghcr.io/huswim/hoyo-check-in:latest
 
 # 1. 서비스 파일 생성
 cat <<EOF >/etc/systemd/system/hoyo-check-in.service
@@ -13,7 +15,7 @@ After=docker.service
 
 [Service]
 Type=oneshot
-ExecStart=/usr/bin/docker run --rm --name "hoyo-check-in" -e LTOKEN_V2=${LTOKEN_V2} -e LTUID_V2=${LTUID_V2} ghcr.io/huswim/hoyo-check-in:latest
+ExecStart=/usr/bin/docker run hoyo-check-in
 
 [Install]
 WantedBy=multi-user.target
