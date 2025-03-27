@@ -15,7 +15,7 @@ After=docker.service
 
 [Service]
 Type=oneshot
-ExecStart=/usr/bin/docker run hoyo-check-in
+ExecStart=/usr/bin/docker start hoyo-check-in
 
 [Install]
 WantedBy=multi-user.target
